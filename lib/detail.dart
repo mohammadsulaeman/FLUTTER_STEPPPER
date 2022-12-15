@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stepform/home_page.dart';
+import 'package:flutter_stepform/style.dart';
 
 class MyDetailHome extends StatefulWidget {
   const MyDetailHome({super.key});
@@ -15,63 +16,98 @@ class _MyDetailHomeState extends State<MyDetailHome> {
       FirebaseDatabase.instance.ref().child('Biodata').orderByChild('nama');
   Widget listDetail({required Map biodata}) {
     return SingleChildScrollView(
-      child: Card(
-        color: Colors.lightBlue,
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(
-                top: 10,
-                left: 5,
-                right: 5,
+      child: Container(
+        width: MediaQuery.of(context).size.width * 1.0,
+        height: MediaQuery.of(context).size.height * 0.4,
+        padding: const EdgeInsets.only(
+          left: 10,
+          right: 10,
+          top: 15,
+          bottom: 5,
+        ),
+        child: Card(
+          elevation: 60,
+          color: Colors.lightBlue,
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 10,
+                  left: 5,
+                  right: 5,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Nama : ",
+                      style: judulstyletext,
+                    ),
+                    Text(
+                      biodata['name'],
+                      style: subjudulstyletext,
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                children: [
-                  const Text("Nama : "),
-                  Text(biodata['name']),
-                ],
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 10,
+                  left: 5,
+                  right: 5,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Nomor Telepon : ",
+                      style: judulstyletext,
+                    ),
+                    Text(
+                      biodata['phone'],
+                      style: subjudulstyletext,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                top: 10,
-                left: 5,
-                right: 5,
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 10,
+                  left: 5,
+                  right: 5,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Email Address : ",
+                      style: judulstyletext,
+                    ),
+                    Text(
+                      biodata['email'],
+                      style: subjudulstyletext,
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                children: [
-                  const Text("Nomor Telepon : "),
-                  Text(biodata['phone']),
-                ],
+              Container(
+                margin: const EdgeInsets.only(
+                  top: 10,
+                  left: 5,
+                  right: 5,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Umur : ",
+                      style: judulstyletext,
+                    ),
+                    Text(
+                      biodata['age'],
+                      style: subjudulstyletext,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                top: 10,
-                left: 5,
-                right: 5,
-              ),
-              child: Column(
-                children: [
-                  const Text("Email Address : "),
-                  Text(biodata['email']),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                top: 10,
-                left: 5,
-                right: 5,
-              ),
-              child: Column(
-                children: [
-                  const Text("Umur : "),
-                  Text(biodata['age']),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -81,7 +117,10 @@ class _MyDetailHomeState extends State<MyDetailHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Detail Data"),
+        title: Text(
+          "Detail Data",
+          style: judulstyletext,
+        ),
       ),
       body: FirebaseAnimatedList(
           query: notesRef,

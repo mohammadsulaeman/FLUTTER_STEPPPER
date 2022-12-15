@@ -1,7 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stepform/detail.dart';
+import 'package:flutter_stepform/style.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -17,6 +17,13 @@ class MyData {
   String phone = "";
   String email = "";
   String age = "";
+  // String alamat = "";
+  // String gender = "";
+  // String asalsekolah = "";
+  // String pendidikan = "";
+  // String jurusan = "";
+  // String prodi = "";
+  // String ipk = "";
 }
 
 //screenmode
@@ -30,13 +37,10 @@ class MyAppScreenMode extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Steppers',
+          title: Text(
+            'Steppers Firebase Realtime Database',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black12,
-            ),
+            style: judulstyletext,
           ),
         ),
         body: const StepperBody(),
@@ -76,7 +80,7 @@ class _StepperBodyState extends State<StepperBody> {
 
   List<Step> steps = [
     Step(
-      title: const Text('Name'),
+      title: Text(namatext),
       isActive: true,
       state: StepState.indexed,
       content: TextFormField(
@@ -92,15 +96,20 @@ class _StepperBodyState extends State<StepperBody> {
             return 'Please enter name';
           }
         },
-        decoration: const InputDecoration(
-            labelText: 'Enter your name',
-            hintText: 'Enter name',
-            icon: Icon(Icons.person),
-            labelStyle: TextStyle(decorationStyle: TextDecorationStyle.solid)),
+        decoration: InputDecoration(
+          labelText: namatext,
+          hintText: namatext,
+          icon: const Icon(Icons.person),
+          labelStyle: labelstyletext,
+          hintStyle: hintstyletext,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
       ),
     ),
     Step(
-      title: const Text('Phone'),
+      title: Text(phonetext),
       isActive: true,
       state: StepState.indexed,
       content: TextFormField(
@@ -115,16 +124,20 @@ class _StepperBodyState extends State<StepperBody> {
           data.phone = newValue.toString();
         },
         maxLines: 1,
-        decoration: const InputDecoration(
-          labelText: 'Enter your phone number',
-          hintText: 'Enter Phone Number',
-          icon: Icon(Icons.phone_android),
-          labelStyle: TextStyle(decorationStyle: TextDecorationStyle.solid),
+        decoration: InputDecoration(
+          labelText: phonetext,
+          hintText: phonetext,
+          icon: const Icon(Icons.phone_android),
+          labelStyle: labelstyletext,
+          hintStyle: hintstyletext,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
       ),
     ),
     Step(
-      title: const Text('Email'),
+      title: Text(emailtext),
       isActive: true,
       state: StepState.indexed,
       content: TextFormField(
@@ -139,16 +152,20 @@ class _StepperBodyState extends State<StepperBody> {
           data.email = newValue.toString();
         },
         maxLines: 1,
-        decoration: const InputDecoration(
-          labelText: 'Enter your email address',
-          hintText: 'Enter a email address',
-          icon: Icon(Icons.email_outlined),
-          labelStyle: TextStyle(decorationStyle: TextDecorationStyle.solid),
+        decoration: InputDecoration(
+          labelText: emailtext,
+          hintText: emailtext,
+          icon: const Icon(Icons.email_outlined),
+          labelStyle: labelstyletext,
+          hintStyle: hintstyletext,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
       ),
     ),
     Step(
-      title: const Text('Age'),
+      title: Text(agetext),
       isActive: true,
       state: StepState.indexed,
       content: TextFormField(
@@ -163,11 +180,15 @@ class _StepperBodyState extends State<StepperBody> {
         onSaved: (newValue) {
           data.age = newValue.toString();
         },
-        decoration: const InputDecoration(
-          labelText: 'Enter your age',
-          hintText: 'Enter age',
-          icon: Icon(Icons.explicit_outlined),
-          labelStyle: TextStyle(decorationStyle: TextDecorationStyle.solid),
+        decoration: InputDecoration(
+          labelText: agetext,
+          hintText: agetext,
+          icon: const Icon(Icons.explicit_outlined),
+          labelStyle: labelstyletext,
+          hintStyle: hintstyletext,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
       ),
     ),
